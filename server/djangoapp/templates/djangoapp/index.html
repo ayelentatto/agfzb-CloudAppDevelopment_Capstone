@@ -19,14 +19,39 @@
     <nav class="navbar navbar-light bg-light">
         <div class="container-fluid">
             <div class="navbar-header">
+                <p class='font-weight-bold font-italic text-md-left navbar-brand'>Dealership Review</p>
+            </div>
+            <div class="navbar-header">
                   <a class="navbar-brand" href="{%url 'djangoapp:index' %}">Home</a>
             </div>
             <div class="navbar-header">
                 <a class="navbar-brand" href="{% url 'djangoapp:about'%}">About Us</a><!-- href para ir a about us page-->
-          </div>
+            </div>
             <div class="navbar-header">
                 <a class="navbar-brand" href="{% url 'djangoapp:contact'%}">Contact</a>
             </div>
+            {% if user.is_authenticated %}
+            <div class='nav navbar-nav navbar-right d-block'>
+                <a class="btn btn-link" href="#">({{ user.username }})</a>
+                <a class="btn btn-link" href="{% url 'djangoapp:logout' %}">Logout</a>
+            </div>
+            {% else %}
+            <form class="form-inline my-2 my-lg-0" action="{% url 'djangoapp:login' %}" method="post">
+               <!--{% csrf_token %} --> 
+                <div class="navbar-header input-group">
+                    <input class="form-control" type='text' placeholder='username'>
+                 </div>
+                <div class="navbar-header">
+                    <input class="form-control" type='password' placeholder='password'>
+                </div>
+                <div class="navbar-header">
+                    <button class='btn btn-primary' type='submit'>Login</button>
+                </div>
+                <div class="navbar-header">
+                    <button class="btn btn-link" href="">Sign Up</button>
+                </div>
+            </form>
+            {% endif %}
         </div>
     </nav>
     <!--Add a dealer table here -->
