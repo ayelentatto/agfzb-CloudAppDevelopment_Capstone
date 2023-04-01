@@ -37,21 +37,23 @@
             </div>
             {% else %}
             <form class="form-inline my-2 my-lg-0" action="{% url 'djangoapp:login' %}" method="post">
-               <!--{% csrf_token %} --> 
+                {% csrf_token %} 
                 <div class="navbar-header input-group">
-                    <input class="form-control" type='text' placeholder='username'>
+                    <input class="form-control" type='text' placeholder='username' name='username'>
                  </div>
                 <div class="navbar-header">
-                    <input class="form-control" type='password' placeholder='password'>
+                    <input class="form-control" type='password' placeholder='password' name='password'>
                 </div>
                 <div class="navbar-header">
                     <button class='btn btn-primary' type='submit'>Login</button>
                 </div>
-                <div class="navbar-header">
-                    <button class="btn btn-link" href="">Sign Up</button>
-                </div>
+                
             </form>
+            <div class="navbar-header">
+                <a class="btn btn-link" href="{% url 'djangoapp:registration' %}">Sign Up</a>
+            </div>
             {% endif %}
+           
         </div>
     </nav>
     <!--Add a dealer table here -->

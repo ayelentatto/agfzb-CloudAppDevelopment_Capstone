@@ -7,5 +7,34 @@
 </head>
     <body>
     <!--Add a registration form here -->
+    <div class="d-flex justify-content-center align-items-center">
+        <form class='font-weight-bold' action='{% url "djangoapp:registration" %}' method='post'>
+            <h1 class=''>Sign Up</h1>
+            <hr>
+            <label for='username' >User Name</label>
+            <input type='text' class='form-control' name='username' placeholder='Enter User Name:' required>
+            <label for='firstname'>First Name</label>
+            <input type='text' class='form-control' name='firstname' placeholder='Enter First Name:' required>
+            <label for='lastname'>Last Name</label>
+            <input type='text' class='form-control' name='lastname' placeholder='Enter Last Name:' required>
+            <label for='password'>Password</label>
+            <input type='text' class='form-control' name='password' placeholder='Enter Password:' required>
+            {% if message %}
+                <div class="alert alert-warning" id="register-alert">
+                {{ message }}
+                </div>
+                <script>
+                    setTimeout(() => {
+                        document.getElementById("register-alert").classList.add("d-none");
+                    }, "3000");
+                </script>
+                {% endif %}
+                <div class="mt-3">
+                    {% csrf_token %}
+
+                    <button class="btn btn-primary" type="submit">Sign Up</button>
+                </div>
+            </form>
+        </div>
     </body>
 </html>
